@@ -147,7 +147,7 @@ async def handle(url, email, secret):
         html = await page.content()
         answer = await solve_quiz(page, body_text, url, tempdir)
         import re
-        submit_urls = re.findall(r'https?://[^"\'<>]+/submit[^"\'<>]*', html)
+        submit_urls = re.findall(r'https?://[^\s"\'<>]+/submit[^\s"\'<>]*', body_text + html)
         submit_url = submit_urls[0] if submit_urls else None
 
         if not submit_url:
